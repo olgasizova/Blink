@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const session = require('express-session');
 const google = require('googleapis');
-const gmail = google.plus('v1');
 const OAuth2 = google.auth.OAuth2;
 
 function getOAuthClient (clientId, clientSecret) {
@@ -22,10 +21,10 @@ const saveSeshGetDetails = (req, res) => {
         oauth2Client.setCredentials(tokens);
         //saving the token to current session
         session["tokens"]=tokens;
-        console.log(session);
-        res.send('success!!')
+        res.redirect('/home')
       }else{
         console.log(err);
+        res.send('Session error')
       }
     });
 }
