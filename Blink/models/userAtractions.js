@@ -21,4 +21,7 @@ const db = require('./../lib/dbConnect')
 // }
 
 module.exports = {
+  // getAllActivities,
+  // addActivity,
+  // deleteActivity
 };
