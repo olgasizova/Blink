@@ -14,7 +14,8 @@ CREATE TABLE events (
 );
 
 CREATE TABLE users (
-  user_id SERIAL PRIMARY KEY,
+  email_id VARCHAR(50) SERIAL PRIMARY KEY,
+  token_id TEXT NOT NULL,
   name VARCHAR NOT NULL,
 -- date of birth in format dd-month-yyyy
   bday INT(2) NOT NULL,
@@ -22,12 +23,15 @@ CREATE TABLE users (
   byear INT(4) NOT NULL,
   gender VARCHAR(6) NOT NULL CHECK (gender IN ('Male', 'Female')),
   country VARCHAR NOT NULL,
+<<<<<<< HEAD
   email VARCHAR NOT NULL,
   password VARCHAR NOT NULL,
   id_token TEXT NOT NULL, --google auth token
+=======
+>>>>>>> 6fd78c635e3f12500241b0f5d4c39316e60fd5fc
 );
 
 CREATE TABLE userEventRefrence(
-  user_id REFERENCES users(user_id),
+  user_id REFERENCES users(email_id,
   event_id REFERENCES events(id)
 );
