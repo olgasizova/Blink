@@ -4,6 +4,7 @@ import './DisplayContainer.css';
 class DisplayContainer extends Component {
   render() {
     return (
+      /* Container in which each event a user saves will render into  */
 
     );
   }
