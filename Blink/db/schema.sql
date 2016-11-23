@@ -23,12 +23,6 @@ CREATE TABLE users (
   byear INT(4) NOT NULL,
   gender VARCHAR(6) NOT NULL CHECK (gender IN ('Male', 'Female')),
   country VARCHAR NOT NULL,
-<<<<<<< HEAD
-  email VARCHAR NOT NULL,
-  password VARCHAR NOT NULL,
-  id_token TEXT NOT NULL, --google auth token
-=======
->>>>>>> 6fd78c635e3f12500241b0f5d4c39316e60fd5fc
 );
 
 CREATE TABLE userEventRefrence(
