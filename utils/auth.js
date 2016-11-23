@@ -11,7 +11,7 @@ function getAuthUrl (clientId, clientSecret) {
     var oauth2Client = getOAuthClient(clientId, clientSecret);
     // generate a url that asks permissions for Google+ and Google Calendar scopes
     var scopes = [
-      'https://www.googleapis.com/auth/plus.me'
+      'https://mail.google.com/'
     ];
     var url = oauth2Client.generateAuthUrl({
         access_type: 'offline',

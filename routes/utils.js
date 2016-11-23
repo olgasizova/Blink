@@ -10,10 +10,11 @@ function getOAuthClient (clientId, clientSecret) {
     return new OAuth2(clientId, clientSecret, 'http://localhost:3001/logged/');
 }
 function getAuthUrl (clientId, clientSecret) {
+  //http://stackoverflow.com/questions/36586539/with-the-npm-package-googleapis-how-do-i-get-the-users-email-address-after-auth
     var oauth2Client = getOAuthClient(clientId, clientSecret);
     // generate a url that asks permissions for Google+ and Google Calendar scopes
     var scopes = [
-      'https://www.googleapis.com/auth/plus.me'
+      'https://www.googleapis.com/auth/userinfo.email'
     ];
     var url = oauth2Client.generateAuthUrl({
         access_type: 'offline',
