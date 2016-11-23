@@ -2,8 +2,9 @@ const router = require('express').Router();
 
 const session = require('express-session');
 const google = require('googleapis');
-const plus = google.plus('v1');
+const gmail = google.gmail('v1');
 const OAuth2 = google.auth.OAuth2;
+const google2 = require('googleapis').oauth2("v2")
 
 function getOAuthClient (clientId, clientSecret) {
     return new OAuth2(clientId, clientSecret, 'http://localhost:3001/logged/');
@@ -14,7 +15,8 @@ const getUserData = (req, res) => {
     oauth2Client.setCredentials(req.session["tokens"]);
 
     var p = new Promise(function (resolve, reject) {
-        plus.people.get({ userId: 'me', auth: oauth2Client }, function(err, response) {
+        console.log(req.session.tokens.id_token);
+        google2.userinfo.v2.me.get({auth: oauth2Client }, function(err, response) {
             resolve(response || err);
         })
     }).then(function (data) {

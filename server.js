@@ -22,7 +22,7 @@ app.use(session({
 
 //routing
 app.use('/', require('./routes/index.js'))
-app.use('/api/utils', require('./routes/utils.js'))
+app.use('/utils/createLoginLink', require('./routes/utils.js'))
 app.use('/logged', require('./routes/logged.js'))
 app.use('/home', require('./routes/home.js'))
 
