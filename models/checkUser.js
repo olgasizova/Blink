@@ -12,11 +12,11 @@ function checkUser(req, res, next) {
     res.user = userObj;
     console.log(res.user);
     next()
-    //console.log(data);
-  // }).catch((err) => {
-  //   console.log('no user');
-  //   createUser(res.email_id, req.session.tokens.id_token)
-  //   next()
+    console.log(data);
+   }).catch((err) => {
+     console.log('no user');
+     createUser(res.email_id, req.session.tokens.id_token)
+     next()
   })
 }
 module.exports = {
