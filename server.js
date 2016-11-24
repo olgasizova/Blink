@@ -1,5 +1,6 @@
 const express = require('express');
 const logger = require('morgan');
+const path = require('path');
 require('dotenv');
 
 const session = require('express-session');
@@ -13,15 +14,17 @@ const app = express();
 app.use(logger('dev'));
 
 // ********* http://voidcanvas.com/googles-oauth-api-node-js/ **********
+
+//configure session
 app.use(session({
   secret: 'secret_eorivj340g45j9g4509j9wcr',
     resave: true,
     saveUninitialized: true
 }));
-
+// ------
 
 //routing
-app.use('/', require('./routes/index.js'))
+app.use('/', express.static(path.join(__dirname, 'views/')))
 app.use('/utils/createLoginLink', require('./routes/utils.js'))
 app.use('/logged', require('./routes/logged.js'))
 app.use('/home', require('./routes/home.js'))
