@@ -8,8 +8,8 @@ const google2 = require('googleapis').oauth2("v2");
 const {checkUser} = require('./../models/checkUser');
 
 
-function getOAuthClient (clientId, clientSecret) {
-    return new OAuth2(clientId, clientSecret, 'http://localhost:3001/logged/');
+function getOAuthClient () {
+    return new OAuth2();
 }
 
 const getUserData = (req, res, next) => {
@@ -21,16 +21,17 @@ const getUserData = (req, res, next) => {
         google2.userinfo.v2.me.get({auth: oauth2Client }, function(err, response) {
             resolve(response || err);
         })
-    }).then(function (data) {
+    }).then((data) => {
         console.log('homeRoute Hit');
-        console.log(data);
         res.email_id = data.email;
         next()
     })
 }
 
 router.route('/')
-  .get(getUserData, checkUser)
+  .get(getUserData, checkUser, (req, res) => {
+    res.redirect('http://localhost:3000');
+  })
 
 
 
