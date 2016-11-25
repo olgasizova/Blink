@@ -1,6 +1,13 @@
 export default class AjaxAdapter {
-  static getAuthUrl() {
-    return fetch(`/api/utils/authurl`, {
+  static checkSession() {
+    return fetch(`/api/checkSession`, {
+      credentials: 'include'
     })
+  }
+  static getUserData() {
+    return fetch('/api/getUserData', {
+      credentials: 'include'
+    })
+    .then((r) => r.json())
   }
 }
