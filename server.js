@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
+const bodyParser = require('body-parser');
 require('dotenv').config()
 
 const session = require('express-session');
@@ -9,6 +10,7 @@ const gmail = google.plus('v1');
 
 const app = express();
 app.use(logger('dev'));
+app.use(bodyParser.json());
 
 // ********* http://voidcanvas.com/googles-oauth-api-node-js/ **********
 
