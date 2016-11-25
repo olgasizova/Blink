@@ -21,7 +21,7 @@ function getUserProfile(req, res, next) {
 }
 
 function getAllUsers(req, res, next) {
-  db.select(`SELECT * FROM users`)
+  db.query(`SELECT * FROM users`)
   .then((data) => {
     res.data = {
       userProfile: data
