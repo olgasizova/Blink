@@ -9,7 +9,14 @@ function getUserProfile(req, res, next) {
     next()
   })
   .catch((err) => {
+    res.data = {
+      userProfile: {
+        id: 'No user signed in',
+        bday: undefined
+      }
+    }
     console.log(`---> Error getUserProfile: ${err}`);
+    next();
   })
 }
 module.exports = {

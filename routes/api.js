@@ -8,7 +8,7 @@ router.route('/getUserData')
   .get(getUserProfile, sendResponse)
 
 router.route('/googleSearch')
-  .get(textSearch, sendResponse)
+  .post(textSearch, sendResponse)
 
 
 
