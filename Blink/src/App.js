@@ -34,7 +34,8 @@ class App extends Component {
     AjaxAdapter.getUserData().then((data) => {
       this.setState({
         user: data.userProfile.id,
-        bday: data.userProfile.bday
+        bday: data.userProfile.bday,
+        profile_img: data.userProfile.profile_img
       })
     })
   }

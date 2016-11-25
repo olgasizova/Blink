@@ -24,6 +24,7 @@ const getUserData = (req, res, next) => {
     }).then((data) => {
         console.log('homeRoute Hit');
         res.email_id = data.email;
+        res.profile_img = data.picture;
         next()
     })
 }
