@@ -12,10 +12,10 @@ app.use(logger('dev'));
 
 // ********* http://voidcanvas.com/googles-oauth-api-node-js/ **********
 
-//configure session
+//configure session cookie
 app.use(session({
   secret: 'secret_eorivj340g45j9g4509j9wcr',
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     secure: false
 }));
@@ -25,6 +25,8 @@ app.use(session({
 
 // serve landing page
 app.use('/', express.static(path.join(__dirname, 'views/')))
+
+// serve production react app
 //app.use('/app', express.static(path.join(__dirname, 'Blink/build')))
 //app.use('/static', express.static(path.join(__dirname, 'Blink/build/static')))
 
@@ -34,9 +36,11 @@ app.use('/', express.static(path.join(__dirname, 'views/')))
 // handle user login and create session
 app.use('/logged', require('./routes/logged.js'))
 
-// Update database with new user or save session id to current user in database
+// Update database with new user and/or save session id to user in database
 app.use('/home', require('./routes/home.js'))
 
+// api route
+app.use('/api', require('./routes/api.js'))
 app.use('/api/checkSession', require('./routes/checkSession'))
 
 const PORT = process.env.PORT || 3001;

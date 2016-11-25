@@ -14,7 +14,12 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    AjaxAdapter.checkSession().then(() => console.log('done'))
+    AjaxAdapter.getUserData().then((data) => {
+      this.setState({
+        user: data.userProfile.id,
+        bday: data.userProfile.bday
+      })
+    })
   }
   render() {
     return (

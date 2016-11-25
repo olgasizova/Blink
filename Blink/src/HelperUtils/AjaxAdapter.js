@@ -4,4 +4,10 @@ export default class AjaxAdapter {
       credentials: 'include'
     })
   }
+  static getUserData() {
+    return fetch('/api/getUserData', {
+      credentials: 'include'
+    })
+    .then((r) => r.json())
+  }
 }
