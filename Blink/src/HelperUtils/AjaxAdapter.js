@@ -10,4 +10,15 @@ export default class AjaxAdapter {
     })
     .then((r) => r.json())
   }
+  static googleSearch(searchTerms) {
+    const payload = { searchTerms }
+    return fetch('/api/googleSearch', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(payload)
+    })
+    .then((r) => r.json())
+  }
 }

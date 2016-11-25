@@ -10,8 +10,25 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      user: 'none'
+      user: 'none',
+      searchTerms: ''
     }
+  }
+  searchGooglePlaces() {
+    AjaxAdapter.googleSearch(this.state.searchTerms)
+    .then((data) => {
+      this.setState({
+        googleSearch: data.results
+      })
+    })
+  }
+  handleSearchSubmit() {
+    this.searchGooglePlaces()
+  }
+  handleSearchInput(e) {
+    this.setState({
+      searchTerms: e.target.value
+    })
   }
   componentDidMount() {
     AjaxAdapter.getUserData().then((data) => {
@@ -28,7 +45,10 @@ class App extends Component {
           <Header />
         </div>
 
-        <Search />
+        <Search
+          handleSearchSubmit={() => this.handleSearchSubmit()}
+          handleSearchInput={(event) => this.handleSearchInput(event)}
+        />
 
         <DisplayContainer />
       </div>
