@@ -1,7 +1,7 @@
 const db = require('./../lib/dbConnect');
 
 function getUserProfile(req, res, next) {
-  db.one(`SELECT id, bday FROM user_profiles WHERE session_id = $1;`, [req.sessionID])
+  db.one(`SELECT id, bday, profile_img FROM user_profiles WHERE session_id = $1;`, [req.sessionID])
   .then((data) => {
     res.data = {
       userProfile: data
