@@ -4,7 +4,7 @@ const session = require('express-session');
 const google = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const google2 = require('googleapis').oauth2("v2");
-
+const plus = google.plus('v1')
 const {checkUser} = require('./../models/checkUser');
 
 
@@ -17,13 +17,14 @@ const getUserData = (req, res, next) => {
     oauth2Client.setCredentials(req.session["tokens"]);
 
     var p = new Promise(function (resolve, reject) {
-        // console.log(req.session.tokens.id_token);
-        google2.userinfo.v2.me.get({auth: oauth2Client }, function(err, response) {
+        //google2.userinfo.v2.me.get({auth: oauth2Client }, function(err, response) {
+        plus.people.get({userId: 'me', auth: oauth2Client}, function(err, response) {
             resolve(response || err);
         })
     }).then((data) => {
         console.log('homeRoute Hit');
-        res.email_id = data.email;
+        console.log(data);
+        res.email_id = data.emails[0].value;
         res.profile_img = data.picture;
         next()
     })
