@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS blink_user_profiles CASCADE;
+DROP TABLE IF EXISTS user_profiles CASCADE;
 
 CREATE TABLE user_profiles (
   id VARCHAR(50) PRIMARY KEY,
