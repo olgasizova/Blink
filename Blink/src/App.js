@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
-import DisplayContainer from './components/DisplayContainer/DisplayContainer';
+//import DisplayContainer from './components/DisplayContainer/DisplayContainer';
+import DisplayListItems from './components/DisplayListItems/DisplayListItems';
+
 import './App.css';
 
 import AjaxAdapter from './HelperUtils/AjaxAdapter'
@@ -11,7 +13,8 @@ class App extends Component {
     super()
     this.state = {
       user: 'none',
-      searchTerms: ''
+      searchTerms: '',
+      googleSearch: []
     }
   }
   searchGooglePlaces() {
@@ -53,8 +56,9 @@ class App extends Component {
           handleSearchSubmit={() => this.handleSearchSubmit()}
           handleSearchInput={(event) => this.handleSearchInput(event)}
         />
-
-        <DisplayContainer />
+        <DisplayListItems
+            googleSearch={this.state.googleSearch}
+           />
       </div>
     );
   }
