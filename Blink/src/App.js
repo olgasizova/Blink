@@ -33,9 +33,12 @@ class App extends Component {
   componentDidMount() {
     AjaxAdapter.getUserData().then((data) => {
       this.setState({
-        user: data.userProfile.id,
-        bday: data.userProfile.bday,
-        profile_img: data.userProfile.profile_img
+        userProfile: {
+          email: data.userProfile.email,
+          name: data.userProfile.name,
+          bday: data.userProfile.bday,
+          profile_img: data.userProfile.profile_img
+        }
       })
     })
   }
