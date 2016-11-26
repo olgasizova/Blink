@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
 import DisplayContainer from './components/DisplayContainer/DisplayContainer';
+import UserInfo from './components/UserInfo/UserInfo';
+
 import './App.css';
 
 import AjaxAdapter from './HelperUtils/AjaxAdapter'
@@ -11,9 +13,30 @@ class App extends Component {
     super()
     this.state = {
       user: 'none',
-      searchTerms: ''
+      searchTerms: '',
+      userAge: '',
+      userGender: '',
+      userDOB: ''
     }
   }
+
+  updateFormAge(e) {
+  console.log("blahh")
+    this.setState({
+      userAge: e.target.value,
+    });
+  }
+   updateFormGender(e) {
+    this.setState({
+      userGender: e.target.value,
+    });
+  }
+  updateFormDOB(e) {
+    this.setState({
+      userDOB: e.target.value,
+    });
+  }
+
   searchGooglePlaces() {
     AjaxAdapter.googleSearch(this.state.searchTerms)
     .then((data) => {
@@ -49,12 +72,21 @@ class App extends Component {
           <Header />
         </div>
 
+        <UserInfo
+          updateFormAge={event => this.updateFormAge(event)}
+          updateFormGender={event => this.updateFormGender(event)}
+          updateFormDOB={event => this.updateFormDOB(event)}
+          //handle form submit?
+          />
+
         <Search
           handleSearchSubmit={() => this.handleSearchSubmit()}
           handleSearchInput={(event) => this.handleSearchInput(event)}
         />
 
-        <DisplayContainer />
+        <DisplayContainer
+         />
+
       </div>
     );
   }
