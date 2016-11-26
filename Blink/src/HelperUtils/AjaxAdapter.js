@@ -21,4 +21,16 @@ export default class AjaxAdapter {
     })
     .then((r) => r.json())
   }
+
+  static saveDOB(dobInput) {
+    const payload = {dobInput}
+    return fetch ('/api/saveDOB', {
+      credentials: 'include',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify(payload)
+    })
+  }
 }
