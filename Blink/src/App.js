@@ -14,26 +14,39 @@ class App extends Component {
     this.state = {
       user: 'none',
       searchTerms: '',
-      userAge: '',
-      userGender: '',
-      userDOB: ''
+      dobInput: {
+        userAge: 'none',
+        userGender: 'none',
+        userDOB: 'none'
+      }
     }
   }
 
   updateFormAge(e) {
-  console.log("blahh")
     this.setState({
-      userAge: e.target.value,
+      dobInput: {
+        userAge: e.target.value,
+        userGender: this.state.dobInput.userGender,
+        userDOB: this.state.dobInput.userDOB
+      }
     });
   }
    updateFormGender(e) {
     this.setState({
-      userGender: e.target.value,
+      dobInput: {
+        userAge: this.state.dobInput.userAge,
+        userGender: e.target.value,
+        userDOB: this.state.dobInput.userDOB
+      }
     });
   }
   updateFormDOB(e) {
     this.setState({
-      userDOB: e.target.value,
+      dobInput: {
+        userAge: this.state.dobInput.userAge,
+        userGender: this.state.dobInput.userGender,
+        userDOB: e.target.value
+      }
     });
   }
 
