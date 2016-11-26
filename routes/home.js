@@ -23,9 +23,10 @@ const getUserData = (req, res, next) => {
         })
     }).then((data) => {
         console.log('homeRoute Hit');
-        console.log(data);
-        res.email_id = data.emails[0].value;
-        res.profile_img = data.picture;
+        //console.log(data);
+        res.email = data.emails[0].value;
+        res.profile_img = data.image.url;
+        res.name = data.displayName
         next()
     })
 }
