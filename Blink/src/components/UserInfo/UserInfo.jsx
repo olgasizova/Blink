@@ -10,7 +10,9 @@ class UserInfo extends Component {
       <input type="text" placeholder="Your Gender" value={this.props.userGender} onChange={this.props.updateFormGender}/>
       <input type="date" value={this.props.userDOB} onChange={this.props.updateFormDOB} />
 
-      <button> Add My Info </button>
+      <button
+        onClick={this.props.handleDOBSubmit}
+        > Add My Info </button>
       </div>
     );
   }

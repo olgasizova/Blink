@@ -66,6 +66,9 @@ class App extends Component {
       searchTerms: e.target.value
     })
   }
+  handleDOBSubmit() {
+    AjaxAdapter.saveDOB(this.state.dobInput)
+  }
   componentDidMount() {
     AjaxAdapter.getUserData().then((data) => {
       this.setState({
@@ -89,7 +92,7 @@ class App extends Component {
           updateFormAge={event => this.updateFormAge(event)}
           updateFormGender={event => this.updateFormGender(event)}
           updateFormDOB={event => this.updateFormDOB(event)}
-          //handle form submit?
+          handleDOBSubmit={() => this.handleDOBSubmit()}
           />
 
         <Search
