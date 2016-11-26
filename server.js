@@ -33,7 +33,7 @@ app.use('/', express.static(path.join(__dirname, 'views/')))
 //app.use('/static', express.static(path.join(__dirname, 'Blink/build/static')))
 
 // Generate link to google auth services
-// app.use('/utils/createLoginLink', require('./routes/utils.js'))
+app.use('/utils/createLoginLink', require('./routes/utils.js'))
 
 // handle user login and create session
 app.use('/logged', require('./routes/logged.js'))
