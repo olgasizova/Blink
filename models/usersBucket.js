@@ -14,14 +14,14 @@ function getAllActivities(req, res, next) {
 function addActivity(req, res, next) {
   /*insert new activity to events table
   name formatted address and link with current google session id */
-  db.none(`INSERT INTO events (name, formatted_address) VALUES ($1, $2)`, [req.body.name, req.body.formatted_address])
+  db.none(`INSERT INTO events (name, formatted_address, rating, icon) VALUES ($1, $2, $3, $4)`, [req.body.name, req.body.formatted_address])
     .then(next())
     .catch(err => next(err));
 }
 
-function deleteEvent(req, res, next) {
+function deleteActivity(req, res, next) {
   // delete activity from event where session id attatched to event id lives
-  db.none(`DELETE FROM events WHERE id = $1;`, [req.params.session_id])
+  db.none(`DELETE FROM events WHERE event_id = $1 AND session_id = $2;`, [req.params.event_id, req.params.session_id])
     .then(next())
     .catch(err => next(err));
 }
@@ -30,5 +30,6 @@ module.exports={
   //export models here
   getAllActivities,
   addActivity,
-  delete,
+  deleteActivity,
+
 }
