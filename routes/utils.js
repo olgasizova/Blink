@@ -12,13 +12,13 @@ function getOAuthClient (clientId, clientSecret) {
 function getAuthUrl (clientId, clientSecret) {
   //http://stackoverflow.com/questions/36586539/with-the-npm-package-googleapis-how-do-i-get-the-users-email-address-after-auth
     var oauth2Client = getOAuthClient(clientId, clientSecret);
-    // generate a url that asks permissions for Google+ and Google Calendar scopes
     var scopes = [
-      'https://www.googleapis.com/auth/userinfo.email'
+      'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/user.birthday.read https://www.googleapis.com/auth/plus.login'
     ];
     var url = oauth2Client.generateAuthUrl({
         access_type: 'offline',
-        scope: scopes // If you only need one scope you can pass it as string
+        scope: scopes,
+        prompt: 'consent' // If you only need one scope you can pass it as string
     });
 
     return url;
