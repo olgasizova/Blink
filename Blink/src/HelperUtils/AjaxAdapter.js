@@ -23,13 +23,13 @@ export default class AjaxAdapter {
   }
 
   static saveDOB(dobInput) {
-    const payload = {dobInput}
+    const payload = {...dobInput}
     return fetch ('/api/saveDOB', {
       credentials: 'include',
       headers: {
-        'Content-Type':'application/json'
+        'Content-Type': 'application/json'
       },
-      method: 'PUT',
+      method: 'POST',
       body: JSON.stringify(payload)
     })
   }
