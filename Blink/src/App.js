@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
 import DisplayListItems from './components/DisplayListItems/DisplayListItems';
+import UserInfo from './components/UserInfo/UserInfo';
 import './App.css';
 
 import AjaxAdapter from './HelperUtils/AjaxAdapter'
@@ -13,8 +14,42 @@ class App extends Component {
       user: 'none',
       searchTerms: '',
       googleSearch:[]
+      dobInput: {
+        userAge: 'none',
+        userGender: 'none',
+        userDOB: 'none'
+      }
     }
   }
+
+  updateFormAge(e) {
+    this.setState({
+      dobInput: {
+        userAge: e.target.value,
+        userGender: this.state.dobInput.userGender,
+        userDOB: this.state.dobInput.userDOB
+      }
+    });
+  }
+   updateFormGender(e) {
+    this.setState({
+      dobInput: {
+        userAge: this.state.dobInput.userAge,
+        userGender: e.target.value,
+        userDOB: this.state.dobInput.userDOB
+      }
+    });
+  }
+  updateFormDOB(e) {
+    this.setState({
+      dobInput: {
+        userAge: this.state.dobInput.userAge,
+        userGender: this.state.dobInput.userGender,
+        userDOB: e.target.value
+      }
+    });
+  }
+
   searchGooglePlaces() {
     AjaxAdapter.googleSearch(this.state.searchTerms)
     .then((data) => {
@@ -30,6 +65,9 @@ class App extends Component {
     this.setState({
       searchTerms: e.target.value
     })
+  }
+  handleDOBSubmit() {
+    AjaxAdapter.saveDOB(this.state.dobInput)
   }
   componentDidMount() {
     AjaxAdapter.getUserData().then((data) => {
@@ -50,15 +88,20 @@ class App extends Component {
           <Header />
         </div>
 
+        <UserInfo
+          updateFormAge={event => this.updateFormAge(event)}
+          updateFormGender={event => this.updateFormGender(event)}
+          updateFormDOB={event => this.updateFormDOB(event)}
+          handleDOBSubmit={() => this.handleDOBSubmit()}
+          />
+
         <Search
           handleSearchSubmit={() => this.handleSearchSubmit()}
           handleSearchInput={(event) => this.handleSearchInput(event)}
         />
-
         <DisplayListItems
           googleSearch={this.state.googleSearch}
           />
-
       </div>
     );
   }
