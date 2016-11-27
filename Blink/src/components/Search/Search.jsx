@@ -14,11 +14,8 @@ const Search = props => (
       className="searchButton"
       onClick={props.handleSearchSubmit}
       >Search</button>
-   <button
-      className="searchButton"
-      onClick={function(){window.location.href='/BucketDisplay'}}
-      >My Destinations</button>
-      
+
+
   </div>
 );
 
