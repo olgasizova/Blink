@@ -11,13 +11,20 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      user: 'none',
       searchTerms: '',
       googleSearch:[],
       dobInput: {
         userAge: 'none',
         userGender: 'none',
-        userDOB: 'none'
+        userDOB: 'none',
+        age: 'none'
+      },
+      userProfile: {
+        email: 'none',
+        name: 'none',
+        bday: 'none',
+        age: 'none',
+        profile_img: 'none'
       }
     }
   }
@@ -68,18 +75,23 @@ class App extends Component {
   }
   handleDOBSubmit() {
     AjaxAdapter.saveDOB(this.state.dobInput)
+    .then(this.updateUserData())
   }
-  componentDidMount() {
+  updateUserData() {
     AjaxAdapter.getUserData().then((data) => {
       this.setState({
         userProfile: {
           email: data.userProfile.email,
           name: data.userProfile.name,
           bday: data.userProfile.bday,
+          age: data.userProfile.age,
           profile_img: data.userProfile.profile_img
         }
       })
     })
+  }
+  componentDidMount() {
+    this.updateUserData();
   }
   render() {
     return (
@@ -89,6 +101,7 @@ class App extends Component {
         </div>
 
         <UserInfo
+          dob={this.state.userProfile.bday}
           updateFormAge={event => this.updateFormAge(event)}
           updateFormGender={event => this.updateFormGender(event)}
           updateFormDOB={event => this.updateFormDOB(event)}
