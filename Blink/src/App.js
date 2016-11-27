@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       user: 'none',
       searchTerms: '',
-      googleSearch:[]
+      googleSearch:[],
       dobInput: {
         userAge: 'none',
         userGender: 'none',
