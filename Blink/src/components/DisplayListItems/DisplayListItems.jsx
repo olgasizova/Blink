@@ -9,6 +9,7 @@ const generateResults = (props) =>
           Title={goog.name}
           address={goog.formatted_address}
           rating={goog.rating}
+          image={goog.place_img}
           />
           </div>
     )
