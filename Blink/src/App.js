@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
-<<<<<<< HEAD
-//import DisplayContainer from './components/DisplayContainer/DisplayContainer';
-import DisplayListItems from './components/DisplayListItems/DisplayListItems';
-
-=======
 import DisplayListItems from './components/DisplayListItems/DisplayListItems';
 import UserInfo from './components/UserInfo/UserInfo';
->>>>>>> 5dcf0607cf4e1156d0d63fd78f1924b9b125df5a
 import './App.css';
 
 import AjaxAdapter from './HelperUtils/AjaxAdapter'
@@ -19,16 +13,12 @@ class App extends Component {
     this.state = {
       user: 'none',
       searchTerms: '',
-<<<<<<< HEAD
-      googleSearch: []
-=======
-      googleSearch:[]
+      googleSearch:[],
       dobInput: {
         userAge: 'none',
         userGender: 'none',
         userDOB: 'none'
       }
->>>>>>> 5dcf0607cf4e1156d0d63fd78f1924b9b125df5a
     }
   }
 
@@ -110,13 +100,8 @@ class App extends Component {
           handleSearchInput={(event) => this.handleSearchInput(event)}
         />
         <DisplayListItems
-<<<<<<< HEAD
-            googleSearch={this.state.googleSearch}
-           />
-=======
           googleSearch={this.state.googleSearch}
           />
->>>>>>> 5dcf0607cf4e1156d0d63fd78f1924b9b125df5a
       </div>
     );
   }
