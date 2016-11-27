@@ -6,8 +6,15 @@ class Header extends Component {
     return (
   /* header display render on EACH page of application
     header includes logo & application name */
+
       <div className="header">
-      <h1>Welcome to Blink</h1>
+           <style>
+                  @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans');
+           </style>
+      <div className="logo"></div>
+      <div className="logo-text"> Blink </div>
+
+      <h1>What's in your bucket list?</h1>
       </div>
 
     );
