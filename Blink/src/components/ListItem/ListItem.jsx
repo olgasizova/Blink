@@ -8,7 +8,7 @@ class ListItem extends Component {
 <div className="list-item"><span className="title">{this.props.Title}</span>
     <p className="address">{this.props.address}</p>
     <p className="rating">rating  {this.props.rating}</p>
-    <img className="image" src={this.props.image}/>
+    <img src={this.props.image} alt={this.props.Title}/>
 </div>
     );
   }
