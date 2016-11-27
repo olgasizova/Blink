@@ -1,0 +1,27 @@
+.rating {
+.border-style: solid;
+border-bottom: solid 1px #222;
+padding-bottom: 20px;
+font-size: 20px;
+font-weight: bold;
+color: tomato;
+line-height: 5px;
+}
+
+
+.title {
+  font-size: 35px;
+}
+
+.list-item{
+  padding-top: 20px;
+  margin-bottom: 20px;
+  /*ackground-color: gray;*/
+}
+
+.address{
+  font-size: 20px;
+  line-height: 5px;
+  color: gray;
+}
+

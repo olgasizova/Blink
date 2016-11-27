@@ -1,5 +1,8 @@
 .SearchItemContainer{
-  background-color: gray;
-  width: 400px;
-  height: 50vh;
+  display: flex;
+  flex-direction: column;
+ /* background-color: gray;*/
+  width: 700px;
+  height: 110vh;
+  margin:auto;
 }
