@@ -9,9 +9,13 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 100px;
   padding: 20px;
   color: white;
+/*  background-image: url(../public/ocean_cropped.jpg);*/
+  background-repeat: no-repeat;
+  background-size: contain;
+
 }
 
 .App-intro {
@@ -21,4 +25,17 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.logo-text {
+  font-size: 105px;
+  line-height: 150px;
+  color: #008B8B;
+  font-family: 'Baloo Bhaina', cursive;
+  position: absolute;
+  margin-top: -25px;
+  width: 300px;
+  /*padding-left: 105px;*/
+
+  /*float:right;*/
 }

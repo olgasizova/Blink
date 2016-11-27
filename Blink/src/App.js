@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
-import DisplayContainer from './components/DisplayContainer/DisplayContainer';
+import DisplayListItems from './components/DisplayListItems/DisplayListItems';
 import UserInfo from './components/UserInfo/UserInfo';
-
 import './App.css';
 
 import AjaxAdapter from './HelperUtils/AjaxAdapter'
@@ -12,12 +11,20 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      user: 'none',
       searchTerms: '',
+      googleSearch:[],
       dobInput: {
         userAge: 'none',
         userGender: 'none',
-        userDOB: 'none'
+        userDOB: 'none',
+        age: 'none'
+      },
+      userProfile: {
+        email: 'none',
+        name: 'none',
+        bday: 'none',
+        age: 'none',
+        profile_img: 'none'
       }
     }
   }
@@ -68,18 +75,23 @@ class App extends Component {
   }
   handleDOBSubmit() {
     AjaxAdapter.saveDOB(this.state.dobInput)
+    .then(this.updateUserData())
   }
-  componentDidMount() {
+  updateUserData() {
     AjaxAdapter.getUserData().then((data) => {
       this.setState({
         userProfile: {
           email: data.userProfile.email,
           name: data.userProfile.name,
           bday: data.userProfile.bday,
+          age: data.userProfile.age,
           profile_img: data.userProfile.profile_img
         }
       })
     })
+  }
+  componentDidMount() {
+    this.updateUserData();
   }
   render() {
     return (
@@ -89,6 +101,7 @@ class App extends Component {
         </div>
 
         <UserInfo
+          dob={this.state.userProfile.bday}
           updateFormAge={event => this.updateFormAge(event)}
           updateFormGender={event => this.updateFormGender(event)}
           updateFormDOB={event => this.updateFormDOB(event)}
@@ -99,10 +112,9 @@ class App extends Component {
           handleSearchSubmit={() => this.handleSearchSubmit()}
           handleSearchInput={(event) => this.handleSearchInput(event)}
         />
-
-        <DisplayContainer
-         />
-
+        <DisplayListItems
+          googleSearch={this.state.googleSearch}
+          />
       </div>
     );
   }

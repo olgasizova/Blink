@@ -1,14 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
+import ListItem from './../ListItem/ListItem';
 import './DisplayListItems.css';
 
-class DisplayListItems extends Component {
-  render() {
-    return (
-/* where each event will render from using a map method showing
-  specific elements saved from api into our blink database this acts
-  as our template for what each event "card" will show */
-    );
-  }
-}
+const generateResults = (props) =>
+  props.googleSearch.map ((goog, i) =>
+    <div key={`ListItem${goog.name}${i}`} className="searchResults">
+      <ListItem
+          Title={goog.name}
+          address={goog.formatted_address}
+          rating={goog.rating}
+          image={goog.place_img}
+          />
+          </div>
+    )
+
+const DisplayListItems = props => (
+
+      <div className="SearchItemContainer">
+            {generateResults(props)}
+      </div>
+);
 
 export default DisplayListItems;

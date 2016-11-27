@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { getUserProfile } = require('./../models/userData');
 const { getAllUsers } = require('./../models/userData');
-const { textSearch } = require('./../services/googleSearch');
+const { textSearch, imgSearch } = require('./../services/googleSearch');
 const { saveDOB } = require('./../models/saveDOB');
 
 const sendResponse = (req, res) => res.json(res.data);
@@ -14,7 +14,7 @@ router.route('/getAllUsers')
 
 
 router.route('/googleSearch')
-  .post(textSearch, sendResponse)
+  .post(textSearch, imgSearch, sendResponse)
 
 router.route('/saveDOB')
   .post(saveDOB, sendResponse)
