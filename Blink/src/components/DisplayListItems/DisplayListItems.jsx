@@ -3,8 +3,8 @@ import ListItem from './../ListItem/ListItem';
 import './DisplayListItems.css';
 
 const generateResults = (props) =>
-  props.googleSearch.map ((goog) =>
-    <div key={`ListItem${goog.name}`} className="searchResults">
+  props.googleSearch.map ((goog, i) =>
+    <div key={`ListItem${goog.name}${i}`} className="searchResults">
       <ListItem
           Title={goog.name}
           address={goog.formatted_address}
