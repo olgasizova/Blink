@@ -1,13 +1,16 @@
 .rating {
-.border-style: solid;
-border-bottom: solid 1px #222;
-padding-bottom: 20px;
 font-size: 20px;
 font-weight: bold;
 color: tomato;
 line-height: 5px;
 }
 
+img.image {
+.border-style: solid;
+border-bottom: solid 10px #222;
+padding-bottom: 0px;
+margin-bottom:20px;
+}
 
 .title {
   font-size: 35px;
@@ -16,7 +19,10 @@ line-height: 5px;
 .list-item{
   padding-top: 20px;
   margin-bottom: 20px;
-  /*ackground-color: gray;*/
+  background-color: #FEFBF7;
+-webkit-box-shadow: 6px 7px 9px -6px rgba(210,212,211,1);
+-moz-box-shadow: 6px 7px 9px -6px rgba(210,212,211,1);
+box-shadow: 6px 7px 9px -6px rgba(210,212,211,1);
 }
 
 .address{
