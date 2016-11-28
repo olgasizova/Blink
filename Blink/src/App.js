@@ -133,7 +133,6 @@ class App extends Component {
         <Search
           handleSearchSubmit={() => this.handleSearchSubmit()}
           handleSearchInput={(event) => this.handleSearchInput(event)}
-          handleToggleDrawer={() => this.handleToggleDrawer()}
         />
         <DisplayListItems
           handleAddClick={(gEvent) => this.handleAddClick(gEvent)}

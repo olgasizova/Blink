@@ -14,10 +14,6 @@ const Search = props => (
       className="searchButton"
       onClick={props.handleSearchSubmit}
       >Search</button>
-   <button
-      className="searchButton"
-      onClick={props.handleToggleDrawer}
-      >My Destinations</button>
 
   </div>
 );
