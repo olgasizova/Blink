@@ -27,7 +27,8 @@ class App extends Component {
         bday: 'none',
         age: 'none',
         profile_img: 'none'
-      }
+      },
+      bucket: 'empty'
     }
   }
 
@@ -108,8 +109,17 @@ class App extends Component {
       })
     })
   }
+  getBucket() {
+    AjaxAdapter.getBucket(this.state.userProfile.id)
+    .then((data) => {
+      this.setState({
+        bucket: data
+      })
+    })
+  }
   componentDidMount() {
     this.updateUserData();
+    this.getBucket();
   }
   render() {
     return (

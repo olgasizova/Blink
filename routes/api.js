@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { getUserProfile, getAllUsers, saveDOB } = require('./../models/userData');
 const { textSearch, imgSearch } = require('./../services/googleSearch');
-const { addToBucket } = require('./../models/usersBucket');
+const { addToBucket, getBucketPending, getBucketCompleted } = require('./../models/usersBucket');
 
 const sendResponse = (req, res) => res.json(res.data);
 const sessionErrorHandler = (err, req, res, next) => {
@@ -25,13 +25,7 @@ router.route('/saveDOB')
 //routes for usersBucketItems
 router.route('/bucket')
   .post(addToBucket, (req, res) => res.sendStatus(204))
+  .get(getBucketPending, getBucketCompleted, sendResponse)
 
-router.post('/BucketListItems',(req, res) => {
-  res.json({ message: 'Activity has been added to your Bucket List!' });
-});
-
-router.delete('/:ActivityID',(req, res) => {
-  res.json({ message: 'Activity Successfully Deleted' });
-});
 
 module.exports = router;
