@@ -9,14 +9,15 @@ function getUserProfile(req, res, next) {
     next()
   })
   .catch((err) => {
-    res.data = {
-      userProfile: {
-        id: 'No user signed in',
-        bday: undefined
-      }
-    }
-    console.log(`---> Error getUserProfile: ${err}`);
-    next();
+    // res.data = {
+    //   userProfile: {
+    //     id: 'No user signed in',
+    //     bday: undefined
+    //   }
+    // }
+    //console.log(`---> Error getUserProfile: ${err}`);
+    // http://stackoverflow.com/questions/11570301/res-redirect-from-post
+    next(err);
   })
 }
 
