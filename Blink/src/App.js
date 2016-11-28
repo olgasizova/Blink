@@ -4,6 +4,8 @@ import Search from './components/Search/Search';
 import DisplayListItems from './components/DisplayListItems/DisplayListItems';
 import UserInfo from './components/UserInfo/UserInfo';
 import BucketDisplay from './components/BucketDisplay/BucketDisplay';
+// import BucketDisplayItems from './components/BucketDisplayItems/BucketDisplayItems';
+
 import './App.css';
 
 import AjaxAdapter from './HelperUtils/AjaxAdapter'
@@ -28,7 +30,10 @@ class App extends Component {
         age: 'none',
         profile_img: 'none'
       },
-      bucket: 'empty'
+      bucket: {
+        pending: [],
+        completed: []
+      }
     }
   }
 
@@ -130,7 +135,9 @@ class App extends Component {
 
         <BucketDisplay ref='bucket'
           handleToggleDrawer={event => this.handleToggleDrawer(event)}
-          consoleLogCheck={event => this.consoleLogCheck(event)}/>
+          consoleLogCheck={event => this.consoleLogCheck(event)}
+          bucket={this.state.bucket}
+          />
 
         <UserInfo
           dob={this.state.userProfile.bday}

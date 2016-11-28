@@ -36,7 +36,7 @@ function getBucketPending(req, res, next) {
           WHERE users.session_id = $/sessionID/;`, req)
     .then((data) => {
       res.data = {
-        pending: [data],
+        pending: data,
         completed: 'none'
       }
       next()
@@ -52,7 +52,7 @@ function getBucketCompleted(req, res, next) {
             WHERE users.session_id = $/sessionID/
             AND events.status = 'completed';`, req)
     .then((data) => {
-      res.data.completed = [data];
+      res.data.completed = data;
       next()
     })
     .catch((err) => {
