@@ -33,7 +33,8 @@ function getBucketPending(req, res, next) {
   db.query(`SELECT events.* FROM users
           INNER JOIN events
           ON(users.id = events.user_id)
-          WHERE users.session_id = $/sessionID/;`, req)
+          WHERE users.session_id = $/sessionID/
+          AND events.status = 'pending';`, req)
     .then((data) => {
       res.data = {
         pending: data,
@@ -59,15 +60,21 @@ function getBucketCompleted(req, res, next) {
       console.log(`--> getBucketCompleted error ${err}`);
     })
 }
-function deleteActivity(req, res, next) {
-  // delete activity from event where session id attatched to event id lives
-  db.none(`DELETE FROM events WHERE event_id = $1 AND session_id = $2;`, [req.params.event_id, req.params.session_id])
-    .then(next())
-    .catch(err => next(err));
+function completeEvent(req, res, next) {
+  db.none(`UPDATE events SET status = 'completed'
+            WHERE id = $/id/;`, req.body)
+    .then(() => next())
+}
+function deleteEvent(req, res, next) {
+  db.none(`DELETE FROM events
+          WHERE id = $/id/;`, req.body)
+    .then(() => next())
 }
 
 module.exports={
   addToBucket,
   getBucketPending,
-  getBucketCompleted
+  getBucketCompleted,
+  completeEvent,
+  deleteEvent
 }

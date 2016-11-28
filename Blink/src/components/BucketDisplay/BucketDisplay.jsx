@@ -13,7 +13,6 @@ class BucketDisplay extends Component {
     }
   }
   toggle(){
-    console.log(this.props.bucket)
     this.setState({
       open: !this.state.open,
       className: !this.state.className
@@ -24,7 +23,10 @@ class BucketDisplay extends Component {
       return (
       <div className={this.state.open}>
         <div className="content">
-          <BucketDisplayItems bucket={this.props.bucket} />
+          <BucketDisplayItems
+            handleCompleteClick={this.props.handleCompleteClick}
+            handleDeleteClick={this.props.handleDeleteClick}
+            bucket={this.props.bucket} />
         </div>
         <div className="transparent">
           <div className="handle" onClick={this.props.handleToggleDrawer}>|||</div>
