@@ -11,14 +11,24 @@ function getAllActivities(req, res, next) {
     .catch(error => next(error));
 }
 
-function addActivity(req, res, next) {
-  /*insert new activity to events table
-  name formatted address and link with current google session id */
-  db.none(`INSERT INTO events (name, formatted_address, rating, icon) VALUES ($1, $2, $3, $4)`, [req.body.name, req.body.formatted_address])
-    .then(next())
-    .catch(err => next(err));
+function addToBucket(req, res, next) {
+  db.one(`SELECT * FROM events
+          WHERE user_id = $/user_id/
+            AND place_id = $/place_id/;`, req.body)
+    .then(() => {
+      console.log('Duplicate event, not adding');
+      next()
+    })
+    .catch((err) => {
+      console.log('--> No event found, adding event');
+      db.none(`INSERT INTO events (user_id, name, icon, rating, formatted_address, place_img, place_id, status)
+              VALUES ($/user_id/, $/name/, $/icon/, $/rating/, $/formatted_address/, $/place_img/, $/place_id/, $/status/);`, req.body)
+        .then(() => next())
+        .catch((err) => {
+          console.log(`--> addToBucket error: ${err}`);
+        })
+    })
 }
-
 function deleteActivity(req, res, next) {
   // delete activity from event where session id attatched to event id lives
   db.none(`DELETE FROM events WHERE event_id = $1 AND session_id = $2;`, [req.params.event_id, req.params.session_id])
@@ -27,9 +37,5 @@ function deleteActivity(req, res, next) {
 }
 
 module.exports={
-  //export models here
-  getAllActivities,
-  addActivity,
-  deleteActivity,
-
+  addToBucket
 }
