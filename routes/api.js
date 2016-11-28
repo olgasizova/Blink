@@ -4,9 +4,14 @@ const { textSearch, imgSearch } = require('./../services/googleSearch');
 const { addToBucket } = require('./../models/usersBucket');
 
 const sendResponse = (req, res) => res.json(res.data);
+const sessionErrorHandler = (err, req, res, next) => {
+  console.log('no session, redirect to login');
+  res.data = {redirectUrl: 'http://localhost:3001'}
+  return res.json(res.data)
+}
 // routes for user login
 router.route('/getUserData')
-  .get(getUserProfile, sendResponse)
+  .get(getUserProfile, sendResponse, sessionErrorHandler)
 
 router.route('/getAllUsers')
   .get(getAllUsers, sendResponse)

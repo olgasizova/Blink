@@ -33,6 +33,7 @@ const getUserData = (req, res, next) => {
 
 router.route('/')
   .get(getUserData, checkUser, (req, res) => {
+    //res.redirect('/app')
     res.redirect('http://localhost:3000');
   })
 

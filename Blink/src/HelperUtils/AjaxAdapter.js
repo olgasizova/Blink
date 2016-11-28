@@ -9,6 +9,13 @@ export default class AjaxAdapter {
       credentials: 'include'
     })
     .then((r) => r.json())
+    .then((data) => {
+      if(data.redirectUrl) {
+        window.location = data.redirectUrl;
+      } else {
+        return data
+      }
+    })
   }
   static googleSearch(searchTerms) {
     const payload = { searchTerms }
