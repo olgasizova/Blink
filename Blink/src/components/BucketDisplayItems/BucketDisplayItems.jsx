@@ -1,15 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
+import ListItem from './../ListItem/ListItem';
 import './BucketDisplayItems.css';
 
-class BucketDisplayItems extends Component {
-  render() {
-    return (
-/* where each event will render from using a map method showing
-    searched results from api with option to add to our bucket list
+const generateSaved =(props) =>
+  props.bucket.pending.map((event,i) =>
+    <div key={`ListItem${event.name}${i}`} className="flex-items">
+      <ListItem
+        Title={event.name}
+        address={event.formatted_address}
+        rating={event.rating}
+        image={event.place_img}
+        />
+        <button> completed </button>
+      </div>
+)
 
-    also implement option to add a completion time form selection */
-    );
-  }
-}
+const BucketDisplayItems = props => (
+      <div className="flex-container">
+            {generateSaved(props)}
+      </div>
+);
 
 export default BucketDisplayItems;

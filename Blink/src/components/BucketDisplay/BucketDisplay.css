@@ -5,8 +5,8 @@
   display: flex;
   border-bottom-right-radius: 30px;
   border-top-right-radius: 30px;
-  transform: translateX(-93vw);
-  transition: transform 3s;
+  transform: translateX(-94vw);
+  transition: transform 1s;
 }
 
 .true{
@@ -34,17 +34,16 @@
 }
 
 .handle{
-  font-size: 63px;
+  font-size: 45px;
   color: #006466;
-  letter-spacing: -5px;
+  letter-spacing: -3px;
   background-color: #008B8D;
   border-top-right-radius:8px;
   border-bottom-right-radius:8px;
-  padding:10px;
+  padding:7px;
 }
 
 .handle:hover{
   color: #004b4d;
-  transform: scale(1.1,1.0);
-  transition: transform .5s;
+  transition: color .5s;
 }
