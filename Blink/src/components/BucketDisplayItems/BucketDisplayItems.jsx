@@ -1,5 +1,7 @@
 import React from 'react';
 import ListItem from './../ListItem/ListItem';
+import CompleteBtn from './../CompleteBtn/CompleteBtn';
+import DeleteBtn from './../DeleteBtn/DeleteBtn';
 import './BucketDisplayItems.css';
 
 const generateCompleted =(props) =>
@@ -11,7 +13,10 @@ const generateCompleted =(props) =>
         rating={event.rating}
         image={event.place_img}
         />
-        <button> delete </button>
+        <DeleteBtn
+          details={event.id}
+          handleDeleteClick={props.handleDeleteClick}
+        />
       </div>
 )
 
@@ -24,7 +29,10 @@ const generateSaved =(props) =>
         rating={event.rating}
         image={event.place_img}
         />
-        <button> completed </button>
+        <CompleteBtn
+          details={event.id}
+          handleCompleteClick={props.handleCompleteClick}
+        />
       </div>
 )
 
