@@ -98,7 +98,13 @@ class App extends Component {
     .then(this.updateUserData())
   }
   handleAddClick(details) {
-    AjaxAdapter.addToBucket(details, this.state.userProfile.id)
+    AjaxAdapter.addToBucket(details, this.state.userProfile.id).then(() => this.getBucket())
+  }
+  handleCompleteClick(id) {
+    AjaxAdapter.completeEvent(id).then(() => this.getBucket())
+  }
+  handleDeleteClick(id) {
+    AjaxAdapter.deleteEvent(id).then(() => this.getBucket())
   }
   updateUserData() {
     AjaxAdapter.getUserData().then((data) => {
@@ -137,6 +143,8 @@ class App extends Component {
         </div>
 
         <BucketDisplay ref='bucket'
+          handleCompleteClick={(pEvent) => this.handleCompleteClick(pEvent)}
+          handleDeleteClick={(dEvent) => this.handleDeleteClick(dEvent)}
           handleToggleDrawer={event => this.handleToggleDrawer(event)}
           consoleLogCheck={event => this.consoleLogCheck(event)}
           bucket={this.state.bucket}

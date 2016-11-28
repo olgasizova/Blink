@@ -60,4 +60,24 @@ export default class AjaxAdapter {
     })
     .then((r) => r.json())
   }
+  static completeEvent(id) {
+    const payload = { id }
+    return fetch('/api/bucket', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify(payload)
+    })
+  }
+  static deleteEvent(id) {
+    const payload = { id }
+    return fetch('/api/bucket', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'DELETE',
+      body: JSON.stringify(payload)
+    })
+  }
 }
