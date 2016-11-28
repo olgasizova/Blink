@@ -16,9 +16,9 @@ const Search = props => (
       >Search</button>
    <button
       className="searchButton"
-      onClick={function(){window.location.href='/BucketDisplay'}}
+      onClick={props.handleToggleDrawer}
       >My Destinations</button>
-      
+
   </div>
 );
 
