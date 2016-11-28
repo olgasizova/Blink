@@ -136,7 +136,10 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <Header />
+          <Header
+          userProfile={this.state.userProfile.profile_img}
+          userName={this.state.userProfile.name}
+          />
         </div>
 
         <BucketDisplay ref='bucket'
