@@ -12,9 +12,8 @@ class Header extends Component {
                   @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans');
            </style>
       <div className="logo"></div>
-      <div className="logo-text"> Blink </div>
+      <div className="logo-text"> Blink <span className="tag-line">Conquer your bucket list</span></div>
 
-      <h1>What's in your bucket list?</h1>
       </div>
 
     );

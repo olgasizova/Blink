@@ -5,11 +5,12 @@
  /* background-color: #222;*/
   color: white;
   height: 60px;
-  width: 500px;
+  width: 480px;
   padding-left: 40px;
   padding-right: 40px;
   margin-top:-65px;
   margin-bottom: 50px;
+  margin-left:36px;
   border: none;
   cursor: pointer;
   text-transform: uppercase;
