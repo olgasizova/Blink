@@ -1,6 +1,7 @@
 import React from 'react';
 import ListItem from './../ListItem/ListItem';
 import './DisplayListItems.css';
+import AddBtn from './../AddBtn/AddBtn'
 
 const generateResults = (props) =>
   props.googleSearch.map ((goog, i) =>
@@ -10,6 +11,10 @@ const generateResults = (props) =>
           address={goog.formatted_address}
           rating={goog.rating}
           image={goog.place_img}
+          />
+          <AddBtn
+            details={goog}
+            handleAddClick={props.handleAddClick}
           />
           </div>
     )

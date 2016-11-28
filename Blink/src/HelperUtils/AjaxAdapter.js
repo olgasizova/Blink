@@ -29,6 +29,16 @@ export default class AjaxAdapter {
       headers: {
         'Content-Type': 'application/json'
       },
+      method: 'PUT',
+      body: JSON.stringify(payload)
+    })
+  }
+  static addToBucket(bucketItem, user_id) {
+    const payload = {user_id, status: 'pending', ...bucketItem}
+    return fetch('/api/bucket', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
       method: 'POST',
       body: JSON.stringify(payload)
     })
