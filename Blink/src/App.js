@@ -28,7 +28,7 @@ class App extends Component {
         name: 'none',
         bday: 'none',
         age: 'none',
-        profile_img: 'none'
+        profile_img: ''
       },
       bucket: {
         pending: [],
