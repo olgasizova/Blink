@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
 import './BucketDisplay.css';
 
+/* container in which each Bucket List-Saved* Search results will show  */
+
 class BucketDisplay extends Component {
+  constructor(props) {
+    super(props)
+    this.state= {
+      open: false
+    }
+  }
+  toggle(){
+    this.setState({
+      open: !this.state.open
+    })
+  }
+
   render() {
+    if(this.state.open === false){
+      return (<span/>)
+    }
     return (
-      <h1>
-      Here is a Bucket Display
-      </h1>
-/* container in which each Bucket List-Search results will show  */
+      <div className="bucketList">
+        Bucket List Stuff Goes Here (passed in as prop)
+      </div>
     );
+
   }
 }
 

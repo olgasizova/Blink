@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import Search from './components/Search/Search';
 import DisplayListItems from './components/DisplayListItems/DisplayListItems';
 import UserInfo from './components/UserInfo/UserInfo';
+import BucketDisplay from './components/BucketDisplay/BucketDisplay';
 import './App.css';
 
 import AjaxAdapter from './HelperUtils/AjaxAdapter'
@@ -28,6 +29,10 @@ class App extends Component {
         profile_img: 'none'
       }
     }
+  }
+
+  handleToggleDrawer() {
+    this.refs.bucket.toggle()
   }
 
   updateFormAge(e) {
@@ -105,6 +110,8 @@ class App extends Component {
           <Header />
         </div>
 
+        <BucketDisplay ref='bucket'/>
+
         <UserInfo
           dob={this.state.userProfile.bday}
           updateFormAge={event => this.updateFormAge(event)}
@@ -116,6 +123,7 @@ class App extends Component {
         <Search
           handleSearchSubmit={() => this.handleSearchSubmit()}
           handleSearchInput={(event) => this.handleSearchInput(event)}
+          handleToggleDrawer={() => this.handleToggleDrawer()}
         />
         <DisplayListItems
           handleAddClick={(gEvent) => this.handleAddClick(gEvent)}
