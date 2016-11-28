@@ -9,3 +9,30 @@
 
   /*float:right;*/
 }
+
+.user-photo{
+  border: 1px solid #0BD4C6;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  float: right;
+}
+
+.user-name{
+  float: right;
+  margin-top:-30px;
+  line-height: 25px;
+  font-size: .9em;
+  text-align: center;
+  margin-right: -15px;
+
+
+
+}
+
+.user-icon {
+  margin-top:15px;
+  position:absolute;
+  left:90%;
+  padding-right:60px;
+}
