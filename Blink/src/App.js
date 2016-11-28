@@ -31,6 +31,14 @@ class App extends Component {
     }
   }
 
+  consoleLogCheck(e){
+    console.log('whoa')
+  }
+
+  handleToggleClose(e){
+    this.refs.bucket.toggle()
+  }
+
   handleToggleDrawer() {
     this.refs.bucket.toggle()
   }
@@ -110,7 +118,8 @@ class App extends Component {
           <Header />
         </div>
 
-        <BucketDisplay ref='bucket'/>
+        <BucketDisplay ref='bucket'
+          handleToggleDrawer={event => this.handleToggleDrawer(event)}/>
 
         <UserInfo
           dob={this.state.userProfile.bday}

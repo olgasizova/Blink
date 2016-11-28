@@ -23,6 +23,7 @@ class BucketDisplay extends Component {
     return (
       <div className="bucketList">
         Bucket List Stuff Goes Here (passed in as prop)
+        <button onClick={this.props.handleToggleDrawer}>Collapse </button>
       </div>
     );
 
