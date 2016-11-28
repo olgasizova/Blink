@@ -119,7 +119,8 @@ class App extends Component {
         </div>
 
         <BucketDisplay ref='bucket'
-          handleToggleDrawer={event => this.handleToggleDrawer(event)}/>
+          handleToggleDrawer={event => this.handleToggleDrawer(event)}
+          consoleLogCheck={event => this.consoleLogCheck(event)}/>
 
         <UserInfo
           dob={this.state.userProfile.bday}

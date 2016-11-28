@@ -7,27 +7,27 @@ class BucketDisplay extends Component {
   constructor(props) {
     super(props)
     this.state= {
-      open: false
+      open: false,
+      className: false
     }
   }
   toggle(){
     this.setState({
-      open: !this.state.open
+      open: !this.state.open,
+      className: !this.state.className
     })
   }
 
   render() {
-    if(this.state.open === false){
-      return (<span/>)
-    }
-    return (
-      <div className="bucketList">
-        Bucket List Stuff Goes Here (passed in as prop)
-        <button onClick={this.props.handleToggleDrawer}>Collapse </button>
+      return (
+      <div className={this.state.open}>
+        <div className="content"></div>
+        <div className="transparent">
+          <div className="handle" onClick={this.props.handleToggleDrawer}>|||</div>
+        </div>
       </div>
-    );
-
+      )
+    }
   }
-}
 
 export default BucketDisplay;
