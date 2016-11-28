@@ -50,4 +50,14 @@ export default class AjaxAdapter {
       body: JSON.stringify(payload)
     })
   }
+  static getBucket(user_id) {
+    return fetch('/api/bucket', {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'GET',
+    })
+    .then((r) => r.json())
+  }
 }

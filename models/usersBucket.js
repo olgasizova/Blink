@@ -29,6 +29,36 @@ function addToBucket(req, res, next) {
         })
     })
 }
+function getBucketPending(req, res, next) {
+  db.query(`SELECT events.* FROM users
+          INNER JOIN events
+          ON(users.id = events.user_id)
+          WHERE users.session_id = $/sessionID/;`, req)
+    .then((data) => {
+      res.data = {
+        pending: data,
+        completed: 'none'
+      }
+      next()
+    })
+    .catch((err) => {
+      console.log(`--> getBucketPending error: ${err}`);
+    })
+}
+function getBucketCompleted(req, res, next) {
+  db.query(`SELECT events.* FROM users
+            INNER JOIN events
+            ON(users.id = events.user_id)
+            WHERE users.session_id = $/sessionID/
+            AND events.status = 'completed';`, req)
+    .then((data) => {
+      res.data.completed = data;
+      next()
+    })
+    .catch((err) => {
+      console.log(`--> getBucketCompleted error ${err}`);
+    })
+}
 function deleteActivity(req, res, next) {
   // delete activity from event where session id attatched to event id lives
   db.none(`DELETE FROM events WHERE event_id = $1 AND session_id = $2;`, [req.params.event_id, req.params.session_id])
@@ -37,5 +67,7 @@ function deleteActivity(req, res, next) {
 }
 
 module.exports={
-  addToBucket
+  addToBucket,
+  getBucketPending,
+  getBucketCompleted
 }
