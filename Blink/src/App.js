@@ -20,6 +20,7 @@ class App extends Component {
         age: 'none'
       },
       userProfile: {
+        id: 'none',
         email: 'none',
         name: 'none',
         bday: 'none',
@@ -77,10 +78,14 @@ class App extends Component {
     AjaxAdapter.saveDOB(this.state.dobInput)
     .then(this.updateUserData())
   }
+  handleAddClick(details) {
+    AjaxAdapter.addToBucket(details, this.state.userProfile.id)
+  }
   updateUserData() {
     AjaxAdapter.getUserData().then((data) => {
       this.setState({
         userProfile: {
+          id: data.userProfile.id,
           email: data.userProfile.email,
           name: data.userProfile.name,
           bday: data.userProfile.bday,
@@ -113,6 +118,8 @@ class App extends Component {
           handleSearchInput={(event) => this.handleSearchInput(event)}
         />
         <DisplayListItems
+          handleAddClick={(gEvent) => this.handleAddClick(gEvent)}
+          userId={this.state.userProfile.id}
           googleSearch={this.state.googleSearch}
           />
       </div>
