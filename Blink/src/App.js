@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import Search from './components/Search/Search';
 import DisplayListItems from './components/DisplayListItems/DisplayListItems';
 import UserInfo from './components/UserInfo/UserInfo';
+import BucketDisplay from './components/BucketDisplay/BucketDisplay';
 import './App.css';
 
 import AjaxAdapter from './HelperUtils/AjaxAdapter'
@@ -20,6 +21,7 @@ class App extends Component {
         age: 'none'
       },
       userProfile: {
+        id: 'none',
         email: 'none',
         name: 'none',
         bday: 'none',
@@ -27,6 +29,10 @@ class App extends Component {
         profile_img: 'none'
       }
     }
+  }
+
+  handleToggleDrawer() {
+    this.refs.bucket.toggle()
   }
 
   updateFormAge(e) {
@@ -77,10 +83,14 @@ class App extends Component {
     AjaxAdapter.saveDOB(this.state.dobInput)
     .then(this.updateUserData())
   }
+  handleAddClick(details) {
+    AjaxAdapter.addToBucket(details, this.state.userProfile.id)
+  }
   updateUserData() {
     AjaxAdapter.getUserData().then((data) => {
       this.setState({
         userProfile: {
+          id: data.userProfile.id,
           email: data.userProfile.email,
           name: data.userProfile.name,
           bday: data.userProfile.bday,
@@ -100,6 +110,8 @@ class App extends Component {
           <Header />
         </div>
 
+        <BucketDisplay ref='bucket'/>
+
         <UserInfo
           dob={this.state.userProfile.bday}
           updateFormAge={event => this.updateFormAge(event)}
@@ -111,8 +123,11 @@ class App extends Component {
         <Search
           handleSearchSubmit={() => this.handleSearchSubmit()}
           handleSearchInput={(event) => this.handleSearchInput(event)}
+          handleToggleDrawer={() => this.handleToggleDrawer()}
         />
         <DisplayListItems
+          handleAddClick={(gEvent) => this.handleAddClick(gEvent)}
+          userId={this.state.userProfile.id}
           googleSearch={this.state.googleSearch}
           />
       </div>

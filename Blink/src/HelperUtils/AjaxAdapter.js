@@ -9,6 +9,13 @@ export default class AjaxAdapter {
       credentials: 'include'
     })
     .then((r) => r.json())
+    .then((data) => {
+      if(data.redirectUrl) {
+        window.location = data.redirectUrl;
+      } else {
+        return data
+      }
+    })
   }
   static googleSearch(searchTerms) {
     const payload = { searchTerms }
@@ -26,6 +33,16 @@ export default class AjaxAdapter {
     const payload = {...dobInput}
     return fetch ('/api/saveDOB', {
       credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify(payload)
+    })
+  }
+  static addToBucket(bucketItem, user_id) {
+    const payload = {user_id, status: 'pending', ...bucketItem}
+    return fetch('/api/bucket', {
       headers: {
         'Content-Type': 'application/json'
       },

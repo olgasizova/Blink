@@ -9,14 +9,15 @@ function getUserProfile(req, res, next) {
     next()
   })
   .catch((err) => {
-    res.data = {
-      userProfile: {
-        id: 'No user signed in',
-        bday: undefined
-      }
-    }
-    console.log(`---> Error getUserProfile: ${err}`);
-    next();
+    // res.data = {
+    //   userProfile: {
+    //     id: 'No user signed in',
+    //     bday: undefined
+    //   }
+    // }
+    //console.log(`---> Error getUserProfile: ${err}`);
+    // http://stackoverflow.com/questions/11570301/res-redirect-from-post
+    next(err);
   })
 }
 
@@ -39,9 +40,20 @@ function getAllUsers(req, res, next) {
     next();
   })
 }
-
+function saveDOB(req, res, next) {
+  db.none(`UPDATE users SET gender = $1, bday = $2, age = $3
+          WHERE session_id = $4;`, [req.body.userGender, req.body.userDOB, req.body.userAge, req.sessionID])
+          .then(() => {
+            console.log('dob updated');
+            next()
+          })
+          .catch((err) => {
+            console.log(`--> error saveDOB: ${err}`);
+          })
+}
 
 module.exports = {
   getUserProfile,
-  getAllUsers
+  getAllUsers,
+  saveDOB
 }

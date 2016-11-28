@@ -14,8 +14,6 @@ const Search = props => (
       className="searchButton"
       onClick={props.handleSearchSubmit}
       >Search</button>
-
-
   </div>
 );
 
