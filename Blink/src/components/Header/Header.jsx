@@ -14,7 +14,7 @@ class Header extends Component {
       <div className="logo"></div>
       <div className="logo-text"> Blink <span className="tag-line">Conquer your bucket list</span></div>
         <div className="user-icon">
-          <img src={this.props.userProfile} className="user-photo" alt="user-photo"/>
+          <img src={this.props.userProfile} className="user-photo" alt="user"/>
             <span className="user-name">{this.props.userName}</span>
             </div>
       </div>
